@@ -460,6 +460,13 @@
     }
 
     animate();
+
+    // Clean address bar immediately if any hash like #hero exists
+    if (window.location.hash) {
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.pathname + window.location.search);
+      }
+    }
   </script>
 </body>
 </html>
