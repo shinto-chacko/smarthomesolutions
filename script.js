@@ -77,16 +77,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Simple Contact Form submission handler
-  const contactForm = document.getElementById('smartContactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const statusBox = document.getElementById('contactStatus');
-      statusBox.innerHTML = `<div style="padding: 12px; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 8px; color: #10b981; margin-top: 15px;">
-        Thank you! Your smart home consultation inquiry has been received. Our team will contact you shortly.
-      </div>`;
-      contactForm.reset();
+  // Clean URL navigation: Smooth scroll without changing address bar hash (#hero, #features, etc.)
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+          // Ensure URL stays clean without hash
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.pathname);
+          }
+        }
+      }
     });
+  });
+
+  // If page is loaded with a hash, remove it immediately
+  if (window.location.hash) {
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.pathname);
+    }
   }
 });
