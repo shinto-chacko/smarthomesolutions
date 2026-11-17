@@ -3,470 +3,414 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DigitalMinds Homes | Something Smart is Coming</title>
-  <meta name="description" content="DigitalMinds Homes is engineering intelligent living spaces. While we build, play our Smart Cyber-Runner game!">
-  
+  <meta name="theme-color" content="#f4f8fd">
+  <title>DigitalMinds Homes | Smart living, made simple</title>
+  <meta name="description" content="Smart-home and energy-saving consultations for housing societies and homes. Explore common-area electricity savings with or without solar.">
+  <meta name="keywords" content="smart home, home automation, Alexa integration, smart lighting, smart security, DigitalMinds Homes">
+  <link rel="canonical" href="https://www.digitalminds.homes/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DigitalMinds Homes | Smart living, made simple">
+  <meta property="og:description" content="Plan smart controls for housing societies and homes, with a site-specific assessment of electricity savings and solar potential.">
+  <meta property="og:url" content="https://www.digitalminds.homes/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Gloock&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
-  <style>
-    :root {
-      --bg-dark: #070a11;
-      --card-bg: rgba(16, 23, 41, 0.75);
-      --border-color: rgba(255, 255, 255, 0.08);
-      --accent-cyan: #06b6d4;
-      --accent-blue: #3b82f6;
-      --accent-purple: #8b5cf6;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --font-main: 'Plus Jakarta Sans', sans-serif;
-      --font-game: 'Space Grotesk', monospace;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      font-family: var(--font-main);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 30px 20px;
-      overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 10% 20%, rgba(6, 182, 212, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.12) 0%, transparent 45%);
-    }
-
-    .container {
-      width: 100%;
-      max-width: 860px;
-      text-align: center;
-      margin: auto;
-    }
-
-    .logo-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(6, 182, 212, 0.1);
-      border: 1px solid rgba(6, 182, 212, 0.3);
-      padding: 8px 20px;
-      border-radius: 9999px;
-      color: var(--accent-cyan);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    h1 {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      font-weight: 800;
-      letter-spacing: -1px;
-      line-height: 1.2;
-      margin-bottom: 18px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(135deg, #06b6d4, #3b82f6, #a855f7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    p.subtitle {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 580px;
-      margin: 0 auto 36px;
-      line-height: 1.6;
-    }
-
-    /* Game Arcade Box */
-    .arcade-wrapper {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 24px;
-      padding: 24px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(6, 182, 212, 0.15);
-      margin-bottom: 30px;
-      position: relative;
-    }
-
-    .arcade-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .arcade-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-game);
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: #38bdf8;
-    }
-
-    .score-board {
-      display: flex;
-      gap: 20px;
-      font-family: var(--font-game);
-      font-size: 0.95rem;
-      font-weight: 700;
-    }
-
-    .score-board span {
-      color: var(--accent-cyan);
-    }
-
-    /* Game Canvas */
-    #gameCanvas {
-      width: 100%;
-      height: 240px;
-      background: #090e1a;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      display: block;
-    }
-
-    .game-controls-hint {
-      margin-top: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-
-    .key-badge {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 3px 10px;
-      border-radius: 6px;
-      color: #fff;
-      font-family: var(--font-game);
-      font-size: 0.8rem;
-    }
-
-    .btn-jump {
-      display: none;
-      margin: 10px auto 0;
-      padding: 10px 28px;
-      border-radius: 9999px;
-      background: linear-gradient(135deg, #06b6d4, #3b82f6);
-      border: none;
-      color: #fff;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      .btn-jump {
-        display: block;
-      }
-    }
-
-    /* Notify Me Input */
-    .notify-form {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      max-width: 460px;
-      margin: 0 auto 30px;
-      flex-wrap: wrap;
-    }
-
-    .notify-input {
-      flex: 1;
-      min-width: 240px;
-      padding: 12px 18px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-color);
-      border-radius: 9999px;
-      color: #fff;
-      font-size: 0.95rem;
-      outline: none;
-      transition: all 0.3s ease;
-    }
-
-    .notify-input:focus {
-      border-color: var(--accent-cyan);
-      box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);
-    }
-
-    .btn-notify {
-      padding: 12px 28px;
-      background: linear-gradient(135deg, #06b6d4, #3b82f6);
-      border: none;
-      border-radius: 9999px;
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .btn-notify:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(6, 182, 212, 0.4);
-    }
-
-    .footer {
-      color: #475569;
-      font-size: 0.85rem;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <div class="container">
-    <div class="logo-badge">
-      <i class="fa-solid fa-house-signal"></i> Smart Home Solutions by Digital Mind
-    </div>
-
-    <h1>Building Tomorrow's <br><span class="gradient-text">Intelligent Sanctuary</span></h1>
-    <p class="subtitle">
-      Our engineers are currently architecting our full next-gen smart home platform. In the meantime, power up your smart bot and dodge the energy spikes!
-    </p>
-
-    <!-- Interactive Game Box -->
-    <div class="arcade-wrapper">
-      <div class="arcade-header">
-        <div class="arcade-title">
-          <i class="fa-solid fa-gamepad"></i> SMART RUNNER ARCADE
-        </div>
-        <div class="score-board">
-          <div>SCORE: <span id="currentScore">0</span></div>
-          <div>HIGH: <span id="highScore">0</span></div>
-        </div>
-      </div>
-
-      <canvas id="gameCanvas" width="800" height="240"></canvas>
-
-      <div class="game-controls-hint">
-        <span>Press <span class="key-badge">SPACE</span> or <span class="key-badge">TAP</span> anywhere to Jump!</span>
-      </div>
-      <button class="btn-jump" id="mobileJumpBtn">Tap to Jump</button>
-    </div>
-
-    <!-- Stay Updated Form -->
-    <form class="notify-form" onsubmit="event.preventDefault(); alert('Thank you! You will be the first to experience DigitalMinds when we launch.'); this.reset();">
-      <input type="email" class="notify-input" placeholder="Enter your email for early access..." required>
-      <button type="submit" class="btn-notify">Notify Me</button>
-    </form>
-
-    <div class="footer">
-      || &copy; 2026 Digital Minds. All rights reserved. Protected by Cloudflare ||
-    </div>
+  <div class="mobile-header">
+    <a href="#hero" class="logo" aria-label="Smart Home, home">
+      <span class="logo-icon"><i class="fa-solid fa-house-signal" aria-hidden="true"></i></span>
+      <span>Smart Home</span>
+    </a>
+    <button class="mobile-nav-toggle" id="mobileNavToggle" type="button" aria-controls="siteNav" aria-expanded="false" aria-label="Open navigation">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
   </div>
 
-  <script>
-    // Canvas Game: Smart Runner
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
-    const currentScoreEl = document.getElementById('currentScore');
-    const highScoreEl = document.getElementById('highScore');
+  <header class="navbar" id="siteNav" aria-expanded="false">
+    <div class="container">
+      <a href="#hero" class="logo" aria-label="Smart Home, home">
+        <span class="logo-icon"><i class="fa-solid fa-house-signal" aria-hidden="true"></i></span>
+        <span>Smart Home</span>
+      </a>
 
-    let score = 0;
-    let highScore = localStorage.getItem('dm_game_high') || 0;
-    highScoreEl.innerText = highScore;
+      <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-pressed="false" aria-label="Keep navigation expanded" title="Keep navigation expanded">
+        <i class="fa-solid fa-thumbtack" aria-hidden="true"></i>
+        <span class="nav-label">Keep open</span>
+      </button>
 
-    let gameRunning = true;
-    let frames = 0;
+      <nav aria-label="Main navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#hero" class="nav-link active" aria-current="page" title="Home"><i class="fa-solid fa-house" aria-hidden="true"></i><span class="nav-label">Home</span></a></li>
+          <li><a href="#societies" class="nav-link" title="Housing societies"><i class="fa-solid fa-building" aria-hidden="true"></i><span class="nav-label">Societies</span></a></li>
+          <li><a href="#features" class="nav-link" title="Smart solutions"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i><span class="nav-label">Solutions</span></a></li>
+          <li><a href="#alexa" class="nav-link" title="Alexa"><i class="fa-brands fa-amazon" aria-hidden="true"></i><span class="nav-label">Alexa</span></a></li>
+          <li><a href="#products" class="nav-link" title="Products"><i class="fa-solid fa-layer-group" aria-hidden="true"></i><span class="nav-label">Products</span></a></li>
+          <li><a href="#process" class="nav-link" title="How it works"><i class="fa-solid fa-route" aria-hidden="true"></i><span class="nav-label">How it works</span></a></li>
+          <li><a href="#about" class="nav-link" title="About DigitalMinds"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span class="nav-label">About</span></a></li>
+          <li><a href="#contact" class="nav-link" title="Contact"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span class="nav-label">Contact</span></a></li>
+        </ul>
+      </nav>
 
-    // Player (Smart Home Robot)
-    const player = {
-      x: 50,
-      y: 180,
-      width: 32,
-      height: 32,
-      dy: 0,
-      jumpForce: -10,
-      gravity: 0.52,
-      grounded: true
-    };
+      <div class="nav-actions">
+        <a href="#contact" class="btn btn-primary btn-sm" aria-label="Plan my setup" title="Plan my setup"><i class="fa-regular fa-comment-dots" aria-hidden="true"></i><span class="nav-label">Plan my setup</span></a>
+      </div>
+    </div>
+  </header>
+  <div class="nav-backdrop" id="navBackdrop" aria-hidden="true" hidden></div>
 
-    // Obstacles (Energy Spikes / Glitches)
-    let obstacles = [];
-    const obstacleTypes = [
-      { width: 22, height: 35, color: '#06b6d4' },
-      { width: 30, height: 45, color: '#ff007f' },
-      { width: 18, height: 28, color: '#3b82f6' }
-    ];
+  <main>
+    <section id="hero" class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="badge"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Smart living, shaped around you</div>
+            <h1>A smarter home, <span class="text-gradient">room by room.</span></h1>
+            <p class="hero-desc">Plan lights, switches, curtains, climate, and more around your daily routines. We don’t sell devices—we recommend compatible options or help you build around the brands you prefer.</p>
+            <div class="hero-buttons">
+              <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Plan my smart home</a>
+              <a href="#features" class="btn btn-outline"><i class="fa-solid fa-house" aria-hidden="true"></i> Explore room ideas</a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat-item"><h4>Start small</h4><p>Begin with one room</p></div>
+              <div class="stat-item"><h4>Make it yours</h4><p>Build around your routine</p></div>
+              <div class="stat-item"><h4>Stay flexible</h4><p>Expand when you’re ready</p></div>
+            </div>
+          </div>
 
-    function spawnObstacle() {
-      const type = obstacleTypes[Math.floor(Math.random() * obstacleTypes.length)];
-      obstacles.push({
-        x: canvas.width,
-        y: 215 - type.height,
-        width: type.width,
-        height: type.height,
-        color: type.color
-      });
-    }
+          <div class="smart-hub-card" aria-label="Interactive smart home controls">
+            <div class="hub-header">
+              <div>
+                <h2 style="font-size: 1.15rem; font-weight: 700;">Your home at a glance</h2>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Living room · Connected home</p>
+              </div>
+              <div class="hub-status"><span class="hub-pulse"></span> All connected</div>
+            </div>
+            <div class="hub-controls-grid">
+              <button class="device-card active" type="button" data-type="light" aria-pressed="true">
+                <span class="device-top"><i class="fa-solid fa-lightbulb device-icon" aria-hidden="true"></i><span class="toggle-switch"><span class="toggle-knob"></span></span></span>
+                <span class="device-bottom"><span class="device-label">Ambient lights</span><span class="device-state">80% Warm glow</span></span>
+              </button>
+              <button class="device-card active" type="button" data-type="climate" aria-pressed="true">
+                <span class="device-top"><i class="fa-solid fa-temperature-half device-icon" aria-hidden="true"></i><span class="toggle-switch"><span class="toggle-knob"></span></span></span>
+                <span class="device-bottom"><span class="device-label">Air conditioning</span><span class="device-state">Set to 24°C</span></span>
+              </button>
+              <button class="device-card active" type="button" data-type="security" aria-pressed="true">
+                <span class="device-top"><i class="fa-solid fa-shield-halved device-icon" aria-hidden="true"></i><span class="toggle-switch"><span class="toggle-knob"></span></span></span>
+                <span class="device-bottom"><span class="device-label">Smart security</span><span class="device-state">Armed &amp; secure</span></span>
+              </button>
+              <button class="device-card" type="button" data-type="entertainment" aria-pressed="false">
+                <span class="device-top"><i class="fa-solid fa-tv device-icon" aria-hidden="true"></i><span class="toggle-switch"><span class="toggle-knob"></span></span></span>
+                <span class="device-bottom"><span class="device-label">Home theater</span><span class="device-state">Powered off</span></span>
+              </button>
+            </div>
+            <div class="hub-scene-preview" style="margin-top: 20px; padding: 12px; background: rgba(23,104,232,0.05); border-radius: var(--radius-sm); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+              <span style="display: flex; align-items: center; gap: 10px;"><i class="fa-brands fa-amazon" style="color: var(--accent-alexa); font-size: 1.2rem;" aria-hidden="true"></i><span style="font-size: 0.85rem; font-weight: 500;">“Alexa, it’s movie night”</span></span>
+              <span style="font-size: 0.75rem; color: var(--accent-cyan); font-weight: 600; white-space: nowrap;">Scene ready</span>
+            </div>
+            <p class="hub-hint" style="margin-top: 14px; color: var(--text-muted); font-size: 0.78rem; text-align: center;">Try toggling a device to preview your smart home.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    function jump() {
-      if (player.grounded) {
-        player.dy = player.jumpForce;
-        player.grounded = false;
-      } else if (!gameRunning) {
-        // Restart game
-        obstacles = [];
-        score = 0;
-        currentScoreEl.innerText = score;
-        player.y = 180;
-        player.dy = 0;
-        gameRunning = true;
-        animate();
-      }
-    }
+    <section id="societies" class="section society-section" aria-labelledby="societyHeading">
+      <div class="container">
+        <div class="society-grid">
+          <div class="society-copy">
+            <h2 class="section-title" id="societyHeading">Lower your society’s electricity costs—<span class="text-gradient">solar or not.</span></h2>
+            <p class="section-subtitle">We help housing societies find practical ways to reduce common-area energy use. A site-specific assessment can explore electricity savings of approximately 30–40%, whether solar is viable or not.</p>
+            <div class="society-options">
+              <p><strong>If solar is viable:</strong> we assess its potential alongside smart controls for shared spaces.</p>
+              <p><strong>If it isn’t:</strong> we focus on schedules and controls that help reduce avoidable consumption.</p>
+            </div>
+            <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Request a society assessment</a>
+          </div>
+          <div class="society-estimator">
+            <h3>Estimate a possible monthly saving</h3>
+            <label for="societyBill">Current monthly common-area electricity bill</label>
+            <div class="society-bill-input">
+              <span aria-hidden="true">₹</span>
+              <input id="societyBill" name="societyBill" type="number" min="0" step="1000" inputmode="decimal" placeholder="50000" aria-describedby="societyBillHelp societySavingsNote">
+            </div>
+            <p class="society-input-help" id="societyBillHelp">Enter the average bill for shared spaces, such as corridors, lifts, and outdoor lighting.</p>
+            <output class="society-savings" id="societySavings" for="societyBill" aria-live="polite">Enter a bill above ₹0 to see an illustrative 30–40% range.</output>
+            <p class="society-savings-note" id="societySavingsNote">This is an illustration, not a guarantee. Actual savings depend on your bills, usage, site conditions, tariffs, and project costs. Lower electricity costs may ease maintenance outgoings, but the net impact also depends on ongoing service expenses.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    // Controls
-    window.addEventListener('keydown', (e) => {
-      if (e.code === 'Space' || e.code === 'ArrowUp') {
-        e.preventDefault();
-        jump();
-      }
-    });
+    <section id="features" class="section">
+      <div class="container">
+        <div class="solutions-carousel">
+          <button type="button" class="products-arrow solutions-arrow" id="solutionsPrev" aria-label="Show Solutions" aria-controls="solutionsSlides" disabled><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+          <div class="solutions-slides" id="solutionsSlides" tabindex="0" aria-label="Solutions and room ideas">
+            <div class="solutions-slide solutions-overview">
+              <div class="section-header">
+                <h2 class="section-title" id="solutionsHeading">What could your home <span class="text-gradient">do for you?</span></h2>
+                <p class="section-subtitle">Start with everyday moments. Add compatible devices and make them work together in a way that feels natural.</p>
+              </div>
+              <div class="features-grid">
+                <article class="feature-box"><div class="feature-icon-wrapper"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></div><h3>Welcome home</h3><p>Set lights and switches to make the entrance feel ready when you arrive.</p></article>
+                <article class="feature-box"><div class="feature-icon-wrapper"><i class="fa-solid fa-moon" aria-hidden="true"></i></div><h3>Wind down together</h3><p>Use a scene to dim the lights, draw compatible curtains, and settle in for the evening.</p></article>
+                <article class="feature-box"><div class="feature-icon-wrapper"><i class="fa-solid fa-fan" aria-hidden="true"></i></div><h3>Make comfort simple</h3><p>Control compatible fans or air conditioning from a phone, switch, or voice routine.</p></article>
+                <article class="feature-box"><div class="feature-icon-wrapper"><i class="fa-solid fa-door-open" aria-hidden="true"></i></div><h3>Know what’s happening</h3><p>Pair compatible door or motion sensors with notifications and useful automations.</p></article>
+                <article class="feature-box"><div class="feature-icon-wrapper"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i></div><h3>One room or more</h3><p>Start with the devices you need, then extend your setup as your home changes.</p></article>
+                <article class="feature-box"><div class="feature-icon-wrapper"><i class="fa-solid fa-sliders" aria-hidden="true"></i></div><h3>Choose how to control it</h3><p>Use a wall switch, an app, a voice assistant, or a routine—depending on the devices you choose.</p></article>
+                <article class="feature-box"><div class="feature-icon-wrapper"><i class="fa-solid fa-microphone-lines" aria-hidden="true"></i></div><h3>Hands-free with Alexa</h3><p>Use your voice to control compatible devices and start everyday routines.</p></article>
+                <article class="feature-box"><div class="feature-icon-wrapper"><i class="fa-solid fa-clock" aria-hidden="true"></i></div><h3>Routines on your schedule</h3><p>Set compatible lights and climate to follow the times that work for your household.</p></article>
+              </div>
+            </div>
+            <section id="rooms" class="solutions-slide room-ideas" aria-labelledby="roomHeading">
+              <div class="room-intro">
+                <h2 class="section-title" id="roomHeading">Designed around the <span class="text-gradient">rooms you use.</span></h2>
+                <p class="section-subtitle">A useful smart home starts with the moments you want to make easier—not a box of gadgets.</p>
+              </div>
+              <div class="room-board">
+                <article class="room-story">
+                  <div class="room-story-art" aria-hidden="true"><i class="fa-solid fa-couch"></i></div>
+                  <div class="room-story-copy"><span class="room-label">Living room</span><h3>Set the scene in one go.</h3><p>Bring lighting, curtains, and entertainment controls together for a relaxed evening.</p><ul class="room-tags"><li>Lights</li><li>Curtains</li><li>Scenes</li></ul></div>
+                </article>
+                <article class="room-story">
+                  <div class="room-story-art" aria-hidden="true"><i class="fa-solid fa-bed"></i></div>
+                  <div class="room-story-copy"><span class="room-label">Bedroom</span><h3>Make mornings gentler.</h3><p>Build a routine around lights, curtains, and comfort.</p><ul class="room-tags"><li>Lighting</li><li>Climate</li></ul></div>
+                </article>
+                <article class="room-story">
+                  <div class="room-story-art" aria-hidden="true"><i class="fa-solid fa-door-open"></i></div>
+                  <div class="room-story-copy"><span class="room-label">Entryway</span><h3>Arrive to a ready home.</h3><p>Connect an arrival scene with compatible lights and sensors.</p><ul class="room-tags"><li>Sensors</li><li>Switches</li></ul></div>
+                </article>
+                <article class="room-story">
+                  <div class="room-story-art" aria-hidden="true"><i class="fa-solid fa-utensils"></i></div>
+                  <div class="room-story-copy"><span class="room-label">Kitchen</span><h3>Make everyday tasks flow.</h3><p>Coordinate task lighting and compatible appliance controls with a routine.</p><ul class="room-tags"><li>Lighting</li><li>Controls</li><li>Routines</li></ul></div>
+                </article>
+                <article class="room-story">
+                  <div class="room-story-art" aria-hidden="true"><i class="fa-solid fa-chair"></i></div>
+                  <div class="room-story-copy"><span class="room-label">Dining area</span><h3>Set the mood for meals.</h3><p>Bring compatible lights and switches together for dinner or family time.</p><ul class="room-tags"><li>Lighting</li><li>Scenes</li></ul></div>
+                </article>
+                <article class="room-story">
+                  <div class="room-story-art" aria-hidden="true"><i class="fa-solid fa-tree"></i></div>
+                  <div class="room-story-copy"><span class="room-label">Outdoor areas</span><h3>Light the way outside.</h3><p>Schedule compatible outdoor lights or connect them to a motion sensor.</p><ul class="room-tags"><li>Lighting</li><li>Sensors</li></ul></div>
+                </article>
+              </div>
+            </section>
+          </div>
+          <button type="button" class="products-arrow solutions-arrow" id="solutionsNext" aria-label="Show room ideas" aria-controls="solutionsSlides"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+        </div>
+        <div class="carousel-pagination" id="solutionsPagination" role="group" aria-label="Solutions scroll position">
+          <button type="button" class="carousel-dot" aria-label="Go to Solutions position 1 of 2" aria-controls="solutionsSlides" aria-current="page"></button>
+          <button type="button" class="carousel-dot" aria-label="Go to room ideas position 2 of 2" aria-controls="solutionsSlides" aria-current="false"></button>
+        </div>
+      </div>
+    </section>
 
-    canvas.addEventListener('click', jump);
-    canvas.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      jump();
-    });
-    document.getElementById('mobileJumpBtn').addEventListener('click', jump);
+    <section id="alexa" class="section alexa-section">
+      <div class="container">
+        <div class="alexa-card">
+          <div>
+            <div class="badge badge-alexa"><i class="fa-brands fa-amazon" aria-hidden="true"></i> Works with Alexa</div>
+            <h2 class="section-title">Your voice is a <span class="text-gradient">shortcut home.</span></h2>
+            <p class="section-subtitle" style="margin-bottom: 24px;">Connect compatible devices with Alexa and bring everyday controls together in natural, easy-to-remember routines.</p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 30px;">
+              <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem;"><i class="fa-solid fa-circle-check" style="color: var(--accent-alexa); margin-top: 4px;" aria-hidden="true"></i> Discover and control compatible smart home devices.</li>
+              <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem;"><i class="fa-solid fa-circle-check" style="color: var(--accent-alexa); margin-top: 4px;" aria-hidden="true"></i> Create routines triggered by your voice, a schedule, or a sensor.</li>
+              <li style="display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem;"><i class="fa-solid fa-circle-check" style="color: var(--accent-alexa); margin-top: 4px;" aria-hidden="true"></i> Adjust lighting, climate, and scenes without reaching for your phone.</li>
+            </ul>
+            <a href="#contact" class="btn btn-alexa"><i class="fa-brands fa-amazon" aria-hidden="true"></i> Plan your Alexa setup</a>
+          </div>
+          <div class="alexa-voice-visual">
+            <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+              <div class="alexa-ring"><i class="fa-solid fa-microphone" style="color: var(--accent-alexa); font-size: 1.8rem;" aria-hidden="true"></i></div>
+              <p id="alexaVoiceFeedback" role="status" aria-live="polite" style="font-size: 0.9rem; color: var(--text-muted); min-height: 24px;">Choose a phrase to preview a routine</p>
+            </div>
+            <button type="button" class="voice-command-pill" style="cursor: pointer;"><i class="fa-solid fa-comment-dots voice-icon" aria-hidden="true"></i><span class="voice-text">“Alexa, good morning”</span></button>
+            <button type="button" class="voice-command-pill" style="cursor: pointer;"><i class="fa-solid fa-comment-dots voice-icon" aria-hidden="true"></i><span class="voice-text">“Alexa, I’m home”</span></button>
+            <button type="button" class="voice-command-pill" style="cursor: pointer;"><i class="fa-solid fa-comment-dots voice-icon" aria-hidden="true"></i><span class="voice-text">“Alexa, movie night”</span></button>
+            <button type="button" class="voice-command-pill" style="cursor: pointer;"><i class="fa-solid fa-comment-dots voice-icon" aria-hidden="true"></i><span class="voice-text">“Alexa, goodnight”</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    function update() {
-      frames++;
+    <section id="products" class="section">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge">The building blocks</div>
+          <h2 class="section-title">What would you like to <span class="text-gradient">connect?</span></h2>
+          <p class="section-subtitle">We’re consultants, not a retailer. We can recommend suitable products or help plan a setup around the brands you already prefer.</p>
+        </div>
+        <div class="product-filters" role="group" aria-label="Filter device categories">
+          <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">Everything</button>
+          <button type="button" class="filter-btn" data-filter="switches" aria-pressed="false">Switches</button>
+          <button type="button" class="filter-btn" data-filter="lighting" aria-pressed="false">Lighting</button>
+          <button type="button" class="filter-btn" data-filter="curtains" aria-pressed="false">Curtains</button>
+          <button type="button" class="filter-btn" data-filter="climate" aria-pressed="false">AC &amp; fans</button>
+          <button type="button" class="filter-btn" data-filter="safety" aria-pressed="false">Sensors</button>
+          <button type="button" class="filter-btn" data-filter="hubs" aria-pressed="false">Hubs</button>
+        </div>
+        <div class="products-carousel">
+          <button type="button" class="products-arrow" id="productsPrev" aria-label="Show previous products" aria-controls="productsCarousel" disabled><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+          <div class="products-grid" id="productsCarousel" role="region" aria-label="Smart home product categories" aria-roledescription="carousel" tabindex="0">
+          <article class="product-card" data-category="hubs">
+            <div class="product-img-box"><i class="fa-solid fa-server" aria-hidden="true"></i></div>
+            <div class="product-info">
+              <div><span class="product-category">Controllers</span><h3 class="product-title">Smart hubs</h3><p class="product-desc">Coordinate compatible devices and routines through a suitable home controller.</p></div>
+              <div class="product-bottom"><button type="button" class="product-details-trigger" data-product-details="hubs" aria-label="View features and benefits for Smart hubs"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Features &amp; benefits</button><a href="#contact" class="btn btn-outline btn-sm">Plan this area</a></div>
+            </div>
+          </article>
+          <article class="product-card" data-category="lighting">
+            <div class="product-img-box"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></div>
+            <div class="product-info">
+              <div><span class="product-category">Lighting</span><h3 class="product-title">Smart lights &amp; dimmers</h3><p class="product-desc">Shape brightness, schedules, and scenes around the way each room is used.</p></div>
+              <div class="product-bottom"><button type="button" class="product-details-trigger" data-product-details="lighting" aria-label="View features and benefits for smart lights and dimmers"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Features &amp; benefits</button><a href="#contact" class="btn btn-outline btn-sm">Plan this area</a></div>
+            </div>
+          </article>
+          <article class="product-card" data-category="switches">
+            <div class="product-img-box"><i class="fa-solid fa-toggle-on" aria-hidden="true"></i></div>
+            <div class="product-info">
+              <div><span class="product-category">Switches</span><h3 class="product-title">Smart switch panels</h3><p class="product-desc">Bring familiar wall controls into connected lighting and appliance routines.</p></div>
+              <div class="product-bottom"><button type="button" class="product-details-trigger" data-product-details="switches" aria-label="View features and benefits for smart switch panels"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Features &amp; benefits</button><a href="#contact" class="btn btn-outline btn-sm">Plan this area</a></div>
+            </div>
+          </article>
+          <article class="product-card" data-category="curtains">
+            <div class="product-img-box"><i class="fa-solid fa-blinds" aria-hidden="true"></i></div>
+            <div class="product-info">
+              <div><span class="product-category">Curtains</span><h3 class="product-title">Curtain controls</h3><p class="product-desc">Schedule compatible curtain motors or include them in a room scene.</p></div>
+              <div class="product-bottom"><button type="button" class="product-details-trigger" data-product-details="curtains" aria-label="View features and benefits for curtain controls"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Features &amp; benefits</button><a href="#contact" class="btn btn-outline btn-sm">Plan this area</a></div>
+            </div>
+          </article>
+          <article class="product-card" data-category="climate">
+            <div class="product-img-box"><i class="fa-solid fa-fan" aria-hidden="true"></i></div>
+            <div class="product-info">
+              <div><span class="product-category">Climate</span><h3 class="product-title">AC &amp; fan controllers</h3><p class="product-desc">Explore ways to control compatible air conditioners and fans from one routine.</p></div>
+              <div class="product-bottom"><button type="button" class="product-details-trigger" data-product-details="climate" aria-label="View features and benefits for AC and fan controllers"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Features &amp; benefits</button><a href="#contact" class="btn btn-outline btn-sm">Plan this area</a></div>
+            </div>
+          </article>
+          <article class="product-card" data-category="safety">
+            <div class="product-img-box"><i class="fa-solid fa-person-walking-arrow-right" aria-hidden="true"></i></div>
+            <div class="product-info">
+              <div><span class="product-category">Sensors</span><h3 class="product-title">Motion &amp; door sensors</h3><p class="product-desc">Use compatible sensors to trigger a light, notification, or other routine.</p></div>
+              <div class="product-bottom"><button type="button" class="product-details-trigger" data-product-details="safety" aria-label="View features and benefits for motion and door sensors"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Features &amp; benefits</button><a href="#contact" class="btn btn-outline btn-sm">Plan this area</a></div>
+            </div>
+          </article>
+          </div>
+          <button type="button" class="products-arrow" id="productsNext" aria-label="Show more products" aria-controls="productsCarousel"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+        </div>
+        <div class="carousel-pagination" id="productsPagination" role="group" aria-label="Product scroll position" hidden></div>
+        <p class="product-note">We don’t sell hardware. These categories are examples; product recommendations and Alexa or Matter compatibility depend on your chosen devices and setup.</p>
+      </div>
+    </section>
 
-      // Player Physics
-      player.dy += player.gravity;
-      player.y += player.dy;
+    <dialog class="product-dialog" id="productDetailsDialog" aria-labelledby="productDialogTitle" aria-describedby="productDialogIntro">
+      <header class="product-dialog-header">
+        <div>
+          <h2 class="product-dialog-title" id="productDialogTitle"></h2>
+          <p class="product-dialog-category" id="productDialogCategory"></p>
+        </div>
+        <button type="button" class="product-dialog-close" aria-label="Close product details"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </header>
+      <div class="product-dialog-body">
+        <p class="product-dialog-intro" id="productDialogIntro"></p>
+        <div class="product-dialog-lists">
+          <section aria-labelledby="productDialogFeaturesTitle">
+            <h3 id="productDialogFeaturesTitle">Features</h3>
+            <ul class="product-dialog-list" id="productDialogFeatures"></ul>
+          </section>
+          <section aria-labelledby="productDialogBenefitsTitle">
+            <h3 id="productDialogBenefitsTitle">Benefits</h3>
+            <ul class="product-dialog-list" id="productDialogBenefits"></ul>
+          </section>
+        </div>
+        <p class="product-dialog-note">Capabilities vary by device, wiring, region, and smart-home platform. We can help plan a compatible setup; we don’t sell hardware.</p>
+        <a href="#contact" class="btn btn-primary product-dialog-cta">Plan this area</a>
+      </div>
+    </dialog>
 
-      // Ground Collision
-      if (player.y >= 215 - player.height) {
-        player.y = 215 - player.height;
-        player.dy = 0;
-        player.grounded = true;
-      }
+    <section id="process" class="section process-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">A clear path from idea to <span class="text-gradient">everyday routine.</span></h2>
+          <p class="section-subtitle">Start with what matters in your home. The right setup can grow from there.</p>
+        </div>
+        <div class="process-steps">
+          <article class="process-step"><span class="step-number">01</span><h3>Tell us about your space</h3><p>Share the rooms, devices, and daily moments you want to improve.</p></article>
+          <article class="process-step"><span class="step-number">02</span><h3>Map the possibilities</h3><p>Explore a setup that fits your home and the way you want to use it.</p></article>
+          <article class="process-step"><span class="step-number">03</span><h3>Check compatibility</h3><p>Match devices and voice controls before choosing specific products.</p></article>
+          <article class="process-step"><span class="step-number">04</span><h3>Make it yours</h3><p>Plan the scenes and routines you want to use every day.</p></article>
+        </div>
+      </div>
+    </section>
 
-      // Spawn Obstacles
-      if (frames % 95 === 0) {
-        spawnObstacle();
-      }
+    <section id="about" class="section about-section">
+      <div class="container">
+        <div class="about-grid">
+          <div>
+            <div class="badge">A little about us</div>
+            <h2 class="section-title">A smart home built around <span class="text-gradient">your choices.</span></h2>
+            <p class="section-subtitle" style="margin-bottom: 20px;">DigitalMinds Homes is a consultation service, not a product store.</p>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">We help you plan and build a smart home that fits your space and routines. We can recommend suitable products—or work with the brands you already prefer.</p>
+          </div>
+          <div class="about-visual-card">
+            <h3 style="font-size: 1.5rem; margin-bottom: 16px;">Smart choices, made simple.</h3>
+            <p style="color: var(--text-muted); margin-bottom: 24px;">A connected home should work for the people who live in it—not the other way around.</p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 18px; color: var(--text-muted);">
+              <li style="display: flex; gap: 12px;"><i class="fa-solid fa-check" style="color: var(--accent-cyan); margin-top: 4px;" aria-hidden="true"></i><span><strong>Start where you are:</strong> build room by room at your own pace.</span></li>
+              <li style="display: flex; gap: 12px;"><i class="fa-solid fa-check" style="color: var(--accent-cyan); margin-top: 4px;" aria-hidden="true"></i><span><strong>Keep control:</strong> choose how your devices and automations work together.</span></li>
+              <li style="display: flex; gap: 12px;"><i class="fa-solid fa-check" style="color: var(--accent-cyan); margin-top: 4px;" aria-hidden="true"></i><span><strong>Plan for tomorrow:</strong> consider compatibility as your home grows.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      // Update Obstacles
-      for (let i = 0; i < obstacles.length; i++) {
-        let obs = obstacles[i];
-        obs.x -= 5.5;
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div>
+            <div class="badge">Let’s talk</div>
+            <h2 class="section-title">Ready for a home that thinks ahead?</h2>
+            <p class="section-subtitle">Tell us what you have in mind. We’ll help you find a starting point for your smart home.</p>
+            <div class="contact-info-list">
+              <div class="contact-item"><div class="contact-icon"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div><div><h3 style="font-size: 1rem; color: var(--text-main);">Email us</h3><a href="mailto:contact@digitalminds.homes" style="color: var(--text-muted); font-size: 0.9rem;">contact@digitalminds.homes</a></div></div>
+            </div>
+          </div>
+          <form class="contact-form" id="smartContactForm">
+            <div class="form-group"><label for="contactName">Your name</label><input class="form-control" id="contactName" name="name" type="text" autocomplete="name" placeholder="How should we address you?" required></div>
+            <div class="form-group"><label for="contactEmail">Email address</label><input class="form-control" id="contactEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+            <div class="form-group"><label for="homeType">What type of home or project?</label><select class="form-control" id="homeType" name="homeType"><option value="">Choose one (optional)</option><option>Housing society / apartment community</option><option>Apartment</option><option>Independent home</option><option>Villa</option><option>Planning a new home</option></select></div>
+            <div class="form-group"><label for="contactMessage">What would you like to automate?</label><textarea class="form-control" id="contactMessage" name="message" placeholder="Tell us a little about your home or project..." required></textarea></div>
+            <button class="btn btn-primary" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Email your inquiry</button>
+            <p id="contactStatus" role="status" aria-live="polite" style="margin-top: 14px; color: var(--text-muted); font-size: 0.85rem;">This form opens your email app to send your inquiry.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        // Collision Detection
-        if (
-          player.x < obs.x + obs.width &&
-          player.x + player.width > obs.x &&
-          player.y < obs.y + obs.height &&
-          player.y + player.height > obs.y
-        ) {
-          gameRunning = false;
-        }
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-promo">
+        <div class="footer-promo-copy">
+          <h2>For your housing society: DoorNotice</h2>
+          <p>DoorNotice brings society notices, visitor approvals, security records and resident services into one practical app. DoorDues is a separate optional workspace for generating maintenance bills, recording offline payments and reviewing dues. DoorNotice is currently in pilot.</p>
+        </div>
+        <a class="btn btn-primary footer-promo-link" href="https://www.doornotice.com/" target="_blank" rel="noopener noreferrer">
+          <span>Visit www.doornotice.com</span>
+          <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+        </a>
+      </div>
+      <div class="footer-grid">
+        <div><a href="#hero" class="logo" aria-label="Smart Home by DigitalMinds Homes"><span class="logo-icon"><i class="fa-solid fa-house-signal" aria-hidden="true"></i></span><span>Smart Home</span></a><p class="footer-desc">Making everyday living a little more connected, comfortable, and convenient.</p></div>
+        <div class="footer-col"><h2>Explore</h2><ul class="footer-links"><li><a href="#features">Features</a></li><li><a href="#alexa">Alexa automation</a></li><li><a href="#products">Products</a></li></ul></div>
+        <div class="footer-col"><h2>Company</h2><ul class="footer-links"><li><a href="#about">About us</a></li><li><a href="#contact">Contact</a></li><li><a href="mailto:contact@digitalminds.homes">Email us</a></li></ul></div>
+        <div class="footer-col"><h2>Get started</h2><ul class="footer-links"><li><a href="#contact">Plan your smart home</a></li><li><a href="#alexa">Alexa integration</a></li><li><a href="#products">Browse device categories</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; <span id="currentYear">2026</span> DigitalMinds Homes. All rights reserved.</span><a href="#hero" class="footer-links" style="color: var(--text-muted); text-decoration: none;">Back to top ↑</a></div>
+    </div>
+  </footer>
 
-        // Passed Obstacle
-        if (obs.x + obs.width < 0) {
-          obstacles.splice(i, 1);
-          i--;
-          score += 10;
-          currentScoreEl.innerText = score;
-          if (score > highScore) {
-            highScore = score;
-            highScoreEl.innerText = highScore;
-            localStorage.setItem('dm_game_high', highScore);
-          }
-        }
-      }
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Floor line
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(0, 215);
-      ctx.lineTo(canvas.width, 215);
-      ctx.stroke();
-
-      // Draw Player (Robot with Glowing Core)
-      ctx.fillStyle = '#06b6d4';
-      ctx.shadowColor = '#06b6d4';
-      ctx.shadowBlur = 12;
-      ctx.fillRect(player.x, player.y, player.width, player.height);
-
-      // Inner Eye
-      ctx.fillStyle = '#ffffff';
-      ctx.shadowBlur = 0;
-      ctx.fillRect(player.x + 18, player.y + 8, 8, 8);
-
-      // Draw Obstacles
-      obstacles.forEach(obs => {
-        ctx.fillStyle = obs.color;
-        ctx.shadowColor = obs.color;
-        ctx.shadowBlur = 10;
-        ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
-      });
-      ctx.shadowBlur = 0;
-
-      // Game Over Screen
-      if (!gameRunning) {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = '#ff4757';
-        ctx.font = 'bold 24px Space Grotesk, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('POWER GLITCH! GAME OVER', canvas.width / 2, 100);
-
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '16px Plus Jakarta Sans, sans-serif';
-        ctx.fillText('Press SPACE or TAP to reboot bot', canvas.width / 2, 140);
-      }
-    }
-
-    function animate() {
-      if (gameRunning) {
-        update();
-        draw();
-        requestAnimationFrame(animate);
-      } else {
-        draw();
-      }
-    }
-
-    animate();
-
-    // Clean address bar immediately if any hash like #hero exists
-    if (window.location.hash) {
-      if (window.history && window.history.replaceState) {
-        window.history.replaceState(null, null, window.location.pathname + window.location.search);
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

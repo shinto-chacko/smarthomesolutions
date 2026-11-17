@@ -1,42 +1,32 @@
-# DigitalMinds.homes 🏡⚡
+# DigitalMinds.homes
 
-A modern, responsive, and aesthetic website showcasing smart home automation, IoT products, and seamless Amazon Alexa voice integration.
+A responsive smart-home showcase for DigitalMinds Homes, built with plain HTML, CSS, and JavaScript.
 
-## ✨ Features
+## Features
 
-- **Hero & Interactive Smart Hub**: Real-time interactive device toggles (Ambient Lighting, Climate Thermostat, Security Systems, Home Theater).
-- **Day-to-Day Automation Scenarios**: Step-by-step breakdown of how automations enhance daily life across morning awakening, departing for work (geofenced away mode), courier deliveries, evening unwinding, and bedtime lockdowns.
-- **Smart Life App Integration**: Comprehensive mobile command center powered by the Tuya-backed Smart Life app—including universal cross-brand device pairing, Tap-to-Run custom scenes, multi-user family access, and 1-click Alexa synchronization.
-- **Measurable Life Benefits**: Time saved (30+ minutes daily), energy optimization (-35%), and automated safety triggers (leak shutoffs & intruder alerts).
-- **Comprehensive Smart Home Features**: Automated routines, energy management, biometric security, Matter & Zigbee mesh protocol compatibility, multi-zone audio, and mobile control.
-- **Dedicated Alexa Voice Integration**: Dedicated showcase with interactive command pills (tap to simulate Alexa execution), glow ring animation, and routine capabilities.
-- **Smart Products Showcase**: Filterable catalog (Central Hubs, Smart Lighting, Security, Climate & Sensors) with responsive pricing cards.
-- **About Us**: Company mission, privacy guarantees, engineering standards, and support details.
-- **Contact Us**: Full contact form with live interaction, office info, phone, and email.
-- **GitHub Pages Ready**: Zero build tools required—pure HTML5, CSS3, and modern vanilla JavaScript.
+- Interactive smart-home dashboard with lighting, climate, security, and entertainment controls.
+- Auto-expanding left navigation, one-section-at-a-time scroll snapping, and a mobile slide-out menu.
+- Consultation-first messaging, a housing-society energy-savings estimator, eight smart-home solution ideas, a left/right Solutions-to-room-ideas slider with six room examples, Alexa routine previews, and filterable product categories in a single-row carousel with feature-and-benefit dialogs.
+- Clickable scroll-position dots on the Solutions and Products carousels.
+- Responsive layouts and keyboard-accessible controls.
+- No build tools or package installation required.
 
-## 🚀 Deploying to GitHub Pages
+## Deploying to GitHub Pages
 
-1. Initialize git (if not already done):
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit for digitalminds.homes"
-   ```
-2. Push to your GitHub repository:
-   ```bash
-   git remote add origin https://github.com/<your-username>/<repo-name>.git
-   git branch -M main
-   git push -u origin main
-   ```
-3. In GitHub repository settings, go to **Settings** > **Pages** > **Build and deployment** > Source: `Deploy from a branch` > Select `main` branch and `/ (root)` folder > Click **Save**.
-4. If you have custom domain `digitalminds.homes`, configure the Custom Domain field with a `CNAME` record pointing to `<your-username>.github.io`.
+1. In GitHub repository settings, open **Pages** and select the branch and `/ (root)` folder for deployment.
+2. In Spaceship DNS, point the `www` CNAME record to `shinto-chacko.github.io`.
+3. Set the GitHub Pages custom domain to `www.digitalminds.homes`. The repository's `CNAME` file already contains this hostname.
+4. Once DNS is verified in GitHub Pages, enable **Enforce HTTPS**.
+
+The contact form opens the visitor's default email app; it does not submit data to a server.
+The device categories are examples for consultation; the site does not sell hardware.
+The society estimator shows an illustrative 30–40% electricity-saving range, not a guaranteed reduction in maintenance charges.
 
 ## 📂 Project Structure
 
 ```text
 ├── index.html       # Primary semantic HTML5 structure and sections
-├── styles.css       # Custom modern CSS styling, dark mode & glassmorphism
-├── script.js        # Interactive hub triggers, voice command demo & category filters
+├── styles.css       # Responsive visual styling
+├── script.js        # Device controls, savings estimate, solution/product pagination, Alexa previews, and contact email
 ├── README.md        # Documentation and deployment instructions
 ```
